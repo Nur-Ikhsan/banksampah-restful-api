@@ -1,0 +1,37 @@
+POST http://localhost:8080/api/trash
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name" : "Botol Kaca",
+  "price" : 25000,
+  "description" : "Botol Kaca Apapun"
+}
+
+###
+
+POST http://localhost:8080/api/locations
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name" : "Bank Sampah Sagitarius",
+  "address" : "Jl. Bintaran Tengah",
+  "open_time" : "07:00:00",
+  "close_time" : "21:00:00",
+  "contacts" : "0895606709641"
+}
+
+###
+
+POST http://localhost:8080/api/accounts
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name" : "Ikhsan",
+  "email" : "nurikhsan.20@co.id",
+  "address" : "Jl. Taman Siswa No. 10",
+  "phoneNumber" : "0895606709641",
+  "password" : "aku"
+}
