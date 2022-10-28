@@ -1,9 +1,12 @@
 package tugas.pmobile.banksampahrestfulapi.service
 
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import tugas.pmobile.banksampahrestfulapi.entity.Account
+import tugas.pmobile.banksampahrestfulapi.error.NotFoundException
 import tugas.pmobile.banksampahrestfulapi.model.AccountResponse
 import tugas.pmobile.banksampahrestfulapi.model.CreateAccountRequest
+import tugas.pmobile.banksampahrestfulapi.model.UpdateAccountRequest
 import tugas.pmobile.banksampahrestfulapi.repository.AccountRepository
 import tugas.pmobile.banksampahrestfulapi.validation.ValidationUtil
 
@@ -26,6 +29,16 @@ class AccountServiceImpl(
 
         accountRepository.save(account)
 
+        return convertAccountToAccountResponse(account)
+    }
+
+    override fun get(id: Int): AccountResponse {
+        val account = findAccountByIdOrThrowNotFound(id)
+
+        return convertAccountToAccountResponse(account)
+    }
+
+    private fun convertAccountToAccountResponse(account: Account): AccountResponse {
         return AccountResponse(
             id = account.id,
             name = account.name,
@@ -34,5 +47,32 @@ class AccountServiceImpl(
             phoneNumber = account.phoneNumber,
             password = account.password
         )
+    }
+
+    override fun update(id: Int, updateAccountRequest: UpdateAccountRequest): AccountResponse {
+        validationUtil.validate(updateAccountRequest)
+
+        val account = findAccountByIdOrThrowNotFound(id)
+
+        account.apply {
+            name = updateAccountRequest.name!!
+            email = updateAccountRequest.email!!
+            address = updateAccountRequest.address!!
+            phoneNumber = updateAccountRequest.phoneNumber!!
+            password = updateAccountRequest.password!!
+        }
+
+        accountRepository.save(account)
+
+        return convertAccountToAccountResponse(account)
+    }
+
+    override fun delete(id: Int) {
+        val account = findAccountByIdOrThrowNotFound(id)
+        accountRepository.delete(account)
+    }
+
+    private fun findAccountByIdOrThrowNotFound(id: Int): Account {
+        return accountRepository.findByIdOrNull(id) ?: throw NotFoundException()
     }
 }

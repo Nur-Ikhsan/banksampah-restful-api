@@ -70,7 +70,6 @@ Request :
 
 ```json
 {
-  "id" : "number, unique",
   "name" : "string",
   "price" : "long",
   "description" : "string"
@@ -217,7 +216,6 @@ Request :
 
 ```json
 {
-  "id" : "number, unique",
   "name" : "string",
   "address" : "string",
   "open_time" : "time",
@@ -369,7 +367,6 @@ Request :
 
 ```json
 {
-  "id" : "number, unique",
   "name" : "string",
   "email" : "string",
   "address" : "string",

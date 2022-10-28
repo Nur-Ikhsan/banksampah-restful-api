@@ -1,3 +1,4 @@
+### Create Trash
 POST http://localhost:8080/api/trash
 Content-Type: application/json
 Accept: application/json
@@ -8,7 +9,7 @@ Accept: application/json
   "description" : "Botol Kaca Apapun"
 }
 
-###
+### Create Location
 
 POST http://localhost:8080/api/locations
 Content-Type: application/json
@@ -22,7 +23,7 @@ Accept: application/json
   "contacts" : "0895606709641"
 }
 
-###
+### Create Account
 
 POST http://localhost:8080/api/accounts
 Content-Type: application/json
@@ -30,8 +31,81 @@ Accept: application/json
 
 {
   "name" : "Ikhsan",
-  "email" : "nurikhsan.20@co.id",
+  "email" : "nurikhsan@gmail.com",
   "address" : "Jl. Taman Siswa No. 10",
   "phoneNumber" : "0895606709641",
   "password" : "aku"
 }
+
+### Get Account
+
+GET http://localhost:8080/api/accounts/2
+Accept: application/json
+
+### Get Location
+
+GET http://localhost:8080/api/locations/2
+Accept: application/json
+
+### Get Trash
+
+GET http://localhost:8080/api/trash/3
+Accept: application/json
+
+### Update Account
+PUT http://localhost:8080/api/accounts/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name" : "Nur Ikhsan",
+  "email" : "nurikhsan.203@yahoo.co.id",
+  "address" : "Jl. Kapten Laut Samadikun No. 10",
+  "phoneNumber" : "0895606709641",
+  "password" : "aku"
+}
+
+### Update Location
+PUT http://localhost:8080/api/locations/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name" : "Bank Sampah Sagitarius",
+  "address" : "Jl. Simpuan",
+  "open_time" : "07:00:00",
+  "close_time" : "17:00:00",
+  "contacts" : "0895606709641"
+}
+
+### Update Trash
+PUT http://localhost:8080/api/trash/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name" : "Botol Plastik",
+  "price" : 10000,
+  "description" : "Botol Plastik"
+}
+
+
+### Delete Account
+DELETE http://localhost:8080/api/accounts/2
+Accept: application/json
+
+### Delete Location
+DELETE http://localhost:8080/api/locations/2
+Accept: application/json
+
+### Delete Trash
+DELETE http://localhost:8080/api/trash/3
+Accept: application/json
+
+### List Trash
+GET http://localhost:8080/api/trash
+Accept: application/json
+
+### List Location
+GET http://localhost:8080/api/locations
+Accept: application/json
