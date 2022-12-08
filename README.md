@@ -1,6 +1,14 @@
 # API Spec
 API Spec Untuk Aplikasi Bank Sampah (BS) Mobile
 
+## Authentication
+
+Semua API Harus Menggunakan Autentikasi Ini
+
+Request:
+- Header :
+  - X-Api-Key : "your secret api key"
+
 ## Trash
 Berisi Dafar Harga Dari Sampah Yang Akan Di Jual
 

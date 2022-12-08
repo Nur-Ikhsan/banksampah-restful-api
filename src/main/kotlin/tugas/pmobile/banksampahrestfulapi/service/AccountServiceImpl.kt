@@ -68,7 +68,7 @@ class AccountServiceImpl(
     }
 
     override fun delete(id: Int) {
-        val account = findAccountByIdOrThrowNotFound(id)
+        val account = accountRepository.findByIdOrNull(id) ?: throw NotFoundException()
         accountRepository.delete(account)
     }
 
