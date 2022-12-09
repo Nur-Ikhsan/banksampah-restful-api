@@ -7,10 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
-import tugas.pmobile.banksampahrestfulapi.model.AccountResponse
-import tugas.pmobile.banksampahrestfulapi.model.CreateAccountRequest
-import tugas.pmobile.banksampahrestfulapi.model.UpdateAccountRequest
-import tugas.pmobile.banksampahrestfulapi.model.WebResponse
+import tugas.pmobile.banksampahrestfulapi.model.*
 import tugas.pmobile.banksampahrestfulapi.service.AccountService
 
 @RestController
@@ -72,6 +69,36 @@ class AccountController(val accountService: AccountService) {
             code = 200,
             status = "OK",
             data = id
+        )
+    }
+
+    @PostMapping(
+        value = ["/api/login"],
+        produces = ["application/json"],
+        consumes = ["application/json"]
+    )
+    fun login(@RequestBody body: LoginRequest): WebResponse<Boolean> {
+        accountService.login(body)
+
+        return WebResponse(
+            code = 200,
+            status = "OK",
+            data = true
+        )
+    }
+
+    @PostMapping(
+        value = ["/api/signup"],
+        produces = ["application/json"],
+        consumes = ["application/json"]
+    )
+    fun signUp(@RequestBody body: SignUpRequest): WebResponse<String> {
+        accountService.signUp(body)
+
+        return WebResponse(
+            code = 200,
+            status = "OK",
+            data = "Berhasil"
         )
     }
 }

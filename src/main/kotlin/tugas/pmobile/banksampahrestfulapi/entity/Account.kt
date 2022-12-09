@@ -18,7 +18,7 @@ data class Account(
     @Column(name = "name")
     var name: String,
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     var email: String,
 
     @Column(name = "address")
@@ -27,6 +27,6 @@ data class Account(
     @Column(name = "phoneNumber")
     var phoneNumber: String,
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     var password: String
 )

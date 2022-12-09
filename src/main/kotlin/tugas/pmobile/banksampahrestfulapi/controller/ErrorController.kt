@@ -2,6 +2,7 @@ package tugas.pmobile.banksampahrestfulapi.controller
 
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
+import tugas.pmobile.banksampahrestfulapi.error.EmailExistsException
 import tugas.pmobile.banksampahrestfulapi.error.NotFoundException
 import tugas.pmobile.banksampahrestfulapi.model.WebResponse
 import javax.validation.ConstraintViolationException
@@ -24,6 +25,15 @@ class ErrorController {
             code = 404,
             status = "NOT FOUND",
             data = "Not Found"
+        )
+    }
+
+    @ExceptionHandler(value = [EmailExistsException::class])
+    fun emailExists(emailExistsException: EmailExistsException): WebResponse<String>{
+        return WebResponse(
+            code = 409,
+            status = "EMAIL EXISTS",
+            data = "Email Exists"
         )
     }
 

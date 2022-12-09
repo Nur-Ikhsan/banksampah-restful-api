@@ -3,10 +3,9 @@ package tugas.pmobile.banksampahrestfulapi.service
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import tugas.pmobile.banksampahrestfulapi.entity.Account
+import tugas.pmobile.banksampahrestfulapi.error.EmailExistsException
 import tugas.pmobile.banksampahrestfulapi.error.NotFoundException
-import tugas.pmobile.banksampahrestfulapi.model.AccountResponse
-import tugas.pmobile.banksampahrestfulapi.model.CreateAccountRequest
-import tugas.pmobile.banksampahrestfulapi.model.UpdateAccountRequest
+import tugas.pmobile.banksampahrestfulapi.model.*
 import tugas.pmobile.banksampahrestfulapi.repository.AccountRepository
 import tugas.pmobile.banksampahrestfulapi.validation.ValidationUtil
 
@@ -74,5 +73,29 @@ class AccountServiceImpl(
 
     private fun findAccountByIdOrThrowNotFound(id: Int): Account {
         return accountRepository.findByIdOrNull(id) ?: throw NotFoundException()
+    }
+
+    override fun login(loginRequest: LoginRequest): AccountResponse {
+        validationUtil.validate(loginRequest)
+        return accountRepository.findOneByEmailAndPassword(loginRequest.email, loginRequest.password) ?: throw NotFoundException()
+    }
+
+    override fun signUp(signUpRequest: SignUpRequest){
+        validationUtil.validate(signUpRequest)
+
+        if (accountRepository.existsByEmail(signUpRequest.email) == true){
+            throw EmailExistsException()
+        }
+
+        val account = Account(
+            id = null,
+            name = signUpRequest.name!!,
+            email = signUpRequest.email!!,
+            address = "",
+            phoneNumber = "",
+            password = signUpRequest.password!!
+        )
+
+        accountRepository.save(account)
     }
 }
