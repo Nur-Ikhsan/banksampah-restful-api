@@ -1,4 +1,4 @@
 package tugas.pmobile.banksampahrestfulapi.error
 
-class EmailExistsException: Exception() {
+class DuplicateEmailException: Exception() {
 }

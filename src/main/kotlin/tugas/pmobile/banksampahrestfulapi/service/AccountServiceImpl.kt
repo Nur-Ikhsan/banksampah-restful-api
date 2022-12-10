@@ -3,7 +3,7 @@ package tugas.pmobile.banksampahrestfulapi.service
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import tugas.pmobile.banksampahrestfulapi.entity.Account
-import tugas.pmobile.banksampahrestfulapi.error.EmailExistsException
+import tugas.pmobile.banksampahrestfulapi.error.DuplicateEmailException
 import tugas.pmobile.banksampahrestfulapi.error.NotFoundException
 import tugas.pmobile.banksampahrestfulapi.model.*
 import tugas.pmobile.banksampahrestfulapi.repository.AccountRepository
@@ -84,7 +84,7 @@ class AccountServiceImpl(
         validationUtil.validate(signUpRequest)
 
         if (accountRepository.existsByEmail(signUpRequest.email) == true){
-            throw EmailExistsException()
+            throw DuplicateEmailException()
         }
 
         val account = Account(

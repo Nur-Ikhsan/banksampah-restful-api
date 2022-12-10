@@ -2,7 +2,7 @@ package tugas.pmobile.banksampahrestfulapi.controller
 
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
-import tugas.pmobile.banksampahrestfulapi.error.EmailExistsException
+import tugas.pmobile.banksampahrestfulapi.error.DuplicateEmailException
 import tugas.pmobile.banksampahrestfulapi.error.NotFoundException
 import tugas.pmobile.banksampahrestfulapi.model.WebResponse
 import javax.validation.ConstraintViolationException
@@ -28,12 +28,12 @@ class ErrorController {
         )
     }
 
-    @ExceptionHandler(value = [EmailExistsException::class])
-    fun emailExists(emailExistsException: EmailExistsException): WebResponse<String>{
+    @ExceptionHandler(value = [DuplicateEmailException::class])
+    fun duplicateEmail(duplicateEmailException: DuplicateEmailException): WebResponse<String>{
         return WebResponse(
             code = 409,
-            status = "EMAIL EXISTS",
-            data = "Email Exists"
+            status = "DUPLICATE EMAIL",
+            data = "Duplicate Email"
         )
     }
 
