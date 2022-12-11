@@ -29,6 +29,12 @@ data class Location(
     var close_time: Time,
 
     @Column(name = "contacts")
-    var contacts: String
+    var contacts: String,
+
+    @Column(name = "latitute")
+    var latitude: Float,
+
+    @Column(name = "longitute")
+    var longitude: Float
 
 )

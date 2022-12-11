@@ -27,7 +27,10 @@ class LocationServiceImpl(
             address = createLocationRequest.address!!,
             open_time = createLocationRequest.open_time!!,
             close_time = createLocationRequest.close_time!!,
-            contacts = createLocationRequest.contacts!!
+            contacts = createLocationRequest.contacts!!,
+            latitude = createLocationRequest.latitude!!,
+            longitude = createLocationRequest.longitude!!
+
         )
 
         locationRepository.save(location)
@@ -48,7 +51,9 @@ class LocationServiceImpl(
             address = location.address,
             open_time = location.open_time,
             close_time = location.close_time,
-            contacts = location.contacts
+            contacts = location.contacts,
+            latitude = location.latitude,
+            longitude = location.longitude
         )
     }
 

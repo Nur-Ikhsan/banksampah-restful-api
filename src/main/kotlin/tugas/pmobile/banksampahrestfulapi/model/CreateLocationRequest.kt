@@ -21,5 +21,11 @@ data class CreateLocationRequest(
     var close_time : Time?,
 
     @field:NotBlank
-    var contacts : String?
+    var contacts : String?,
+
+    @field:NotBlank
+    var latitude: Float?,
+
+    @field:NotBlank
+    var longitude: Float?
 )

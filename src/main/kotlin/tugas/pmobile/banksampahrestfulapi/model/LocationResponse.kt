@@ -14,5 +14,9 @@ data class LocationResponse(
 
     var close_time: Time,
 
-    var contacts: String
+    var contacts: String,
+
+    var latitude: Float,
+
+    var longitude: Float
 )
