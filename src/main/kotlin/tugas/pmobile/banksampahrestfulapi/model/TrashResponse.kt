@@ -8,5 +8,7 @@ data class TrashResponse(
 
     var price: Long,
 
-    var description: String
+    var description: String,
+
+    var imageId: Int?
 )

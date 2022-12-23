@@ -17,6 +17,10 @@ class AccountServiceImpl(
     override fun create(createAccountRequest: CreateAccountRequest): AccountResponse {
         validationUtil.validate(createAccountRequest)
 
+        if (accountRepository.existsByEmail(createAccountRequest.email) == true){
+            throw DuplicateEmailException()
+        }
+
         val account = Account(
             id = createAccountRequest.id,
             name = createAccountRequest.name!!,

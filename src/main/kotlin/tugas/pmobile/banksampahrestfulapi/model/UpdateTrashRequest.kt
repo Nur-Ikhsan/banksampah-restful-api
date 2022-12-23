@@ -14,5 +14,7 @@ data class UpdateTrashRequest(
     var price : Long?,
 
     @field:NotBlank
-    var description : String?
+    var description : String?,
+
+    var imageId: Int?
 )

@@ -9,24 +9,19 @@ import javax.persistence.GenerationType
 
 
 @Entity
-@Table(name = "accounts")
-data class Account(
+@Table(name = "trash_images")
+data class TrashImage(
     @Id
+    @Column(name = "id", nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int?,
 
     @Column(name = "name", nullable = false)
-    var name: String,
+    val name: String,
 
-    @Column(name = "email", nullable = false, unique = true)
-    var email: String,
+    @Column(name = "size", nullable = false)
+    val size: Long,
 
-    @Column(name = "address", nullable = true)
-    var address: String,
-
-    @Column(name = "phoneNumber", nullable = true)
-    var phoneNumber: String,
-
-    @Column(name = "password", nullable = false)
-    var password: String
+    @Column(name = "type", nullable = false)
+    val type: String
 )

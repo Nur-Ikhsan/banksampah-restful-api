@@ -16,7 +16,7 @@ data class LocationResponse(
 
     var contacts: String,
 
-    var latitude: Float,
+    var latitude: Double,
 
-    var longitude: Float
+    var longitude: Double
 )

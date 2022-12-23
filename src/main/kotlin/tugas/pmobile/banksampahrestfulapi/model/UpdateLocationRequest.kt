@@ -7,17 +7,23 @@ import javax.validation.constraints.NotNull
 data class UpdateLocationRequest(
 
     @field:NotBlank
-    var name : String?,
+    var name: String?,
 
     @field:NotBlank
-    var address : String?,
+    var address: String?,
 
     @field:NotNull
-    var open_time : Time?,
+    var open_time: Time?,
 
     @field:NotNull
-    var close_time : Time?,
+    var close_time: Time?,
 
     @field:NotBlank
-    var contacts : String?
+    var contacts: String?,
+
+    @field:NotNull
+    var latitude: Double?,
+
+    @field:NotNull
+    var longitude: Double?
 )

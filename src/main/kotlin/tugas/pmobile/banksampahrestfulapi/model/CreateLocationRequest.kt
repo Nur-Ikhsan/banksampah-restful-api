@@ -23,9 +23,9 @@ data class CreateLocationRequest(
     @field:NotBlank
     var contacts : String?,
 
-    @field:NotBlank
-    var latitude: Float?,
+    @field:NotNull
+    var latitude: Double?,
 
-    @field:NotBlank
-    var longitude: Float?
+    @field:NotNull
+    var longitude: Double?
 )

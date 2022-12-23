@@ -1,0 +1,940 @@
+openapi: "3.0.3"
+
+info:
+  title: "banksampah_restful_api"
+  description: "API Spec Untuk Aplikasi Bank Sampah (BS) Mobile"
+  version: "1.0.0"
+servers:
+  - url: "http://127.0.0.1:8080"
+    description: "Local server"
+paths:
+  /api/trash/image:
+    post:
+      tags:
+        - "Trash"
+      summary: "Upload Trash Image"
+      operationId: "upload"
+      parameters:
+        - name: "file"
+          in: "query"
+          required: true
+          schema:
+            type: "string"
+            format: "binary"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "object"
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int32"
+                        example: 1
+                      name:
+                        type: "string"
+                        example: "3ea74594-7d42-4a63-bfdc-1dd190170647.jpeg"
+                      size:
+                        type: "integer"
+                        format: "int32"
+                        example: 39956
+                      type:
+                        type: "string"
+                        example: "image/jpeg"
+  /api/trash/image/{id}:
+    get:
+      tags:
+        - "Trash"
+      summary: "Download Trash Image"
+      operationId: "download"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            'image/*':
+              schema:
+                type: string
+                format: binary
+  /api/accounts:
+    post:
+      tags:
+        - "Account"
+      summary: "Create Account"
+      operationId: "createAccount"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                  example: "Nur Ikhsan"
+                email:
+                    type: "string"
+                    example: "nurikhsan.0203@gmail.com"
+                address:
+                    type: "string"
+                    example: "Jl. Taman Siswa No. 1"
+                phoneNumber:
+                    type: "string"
+                    example: "081234567890"
+                password:
+                    type: "string"
+                    example: "123456"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "object"
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int32"
+                        example: 1
+                      name:
+                        type: "string"
+                        example: "Nur Ikhsan"
+                      email:
+                        type: "string"
+                        example: "nurikhsan.0203@gmail.com"
+                      address:
+                        type: "string"
+                        example: "Jl. Taman Siswa No. 1"
+                      phoneNumber:
+                        type: "string"
+                        example: "081234567890"
+                      password:
+                        type: "string"
+                        example: "123456"
+  /api/login:
+    post:
+      tags:
+        - "Account"
+      summary: "Login to Application"
+      operationId: "login"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                email:
+                  type: "string"
+                  example: "nurikhsan.0203@gmail.com"
+                password:
+                    type: "string"
+                    example: "123456"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "boolean"
+                    example: true
+  /api/signup:
+    post:
+      tags:
+        - "Account"
+      summary: "Sign Up on The Application"
+      operationId: "signUp"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                  example: "Nur Ikhsan"
+                email:
+                  type: "string"
+                  example: "nurikhsan.0203@gmail.com"
+                password:
+                  type: "string"
+                  example: "123456"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "string"
+                    example: "Berhasil"
+  /api/accounts/{id_account}:
+    get:
+      tags:
+        - "Account"
+      summary: "Get One Account"
+      operationId: "getAccount"
+      parameters:
+        - name: "id_account"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "object"
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int32"
+                        example: 1
+                      name:
+                        type: "string"
+                        example: "Nur Ikhsan"
+                      email:
+                        type: "string"
+                        example: "nurikhsan.0203@gmail.com"
+                      address:
+                        type: "string"
+                        example: "Jl. Taman Siswa No. 1"
+                      phoneNumber:
+                        type: "string"
+                        example: "081234567890"
+                      password:
+                        type: "string"
+                        example: "123456"
+    put:
+      tags:
+        - "Account"
+      summary: "Update Account"
+      operationId: "updateAccount"
+      parameters:
+        - name: "id_account"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                  example: "Nur Ikhsan"
+                email:
+                  type: "string"
+                  example: "nurikhsan.0203@gmail.com"
+                address:
+                  type: "string"
+                  example: "Jl. Taman Siswa No. 1"
+                phoneNumber:
+                  type: "string"
+                  example: "081234567890"
+                password:
+                  type: "string"
+                  example: "123456"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "object"
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int32"
+                        example: 1
+                      name:
+                        type: "string"
+                        example: "Nur Ikhsan"
+                      email:
+                        type: "string"
+                        example: "nurikhsan.0203@gmail.com"
+                      address:
+                        type: "string"
+                        example: "Jl. Taman Siswa No. 1"
+                      phoneNumber:
+                        type: "string"
+                        example: "081234567890"
+                      password:
+                        type: "string"
+                        example: "123456"
+    delete:
+      tags:
+        - "Account"
+      summary: "Delete Account"
+      operationId: "deleteAccount"
+      parameters:
+        - name: "id_account"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "integer"
+                    format: "int32"
+                    example: 1
+  /api/locations:
+    post:
+      tags:
+        - "Location"
+      summary: "Create Location"
+      operationId: "createLocation"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                  example: "Bank Sampah 1"
+                address:
+                  type: "string"
+                  example: "Jl. Taman Siswa No. 1"
+                open_time:
+                  type: "string"
+                  example: "08:00:00"
+                close_time:
+                  type: "string"
+                  example: "16:00:00"
+                contacts:
+                  type: "string"
+                  example: "081234567890"
+                latitude:
+                  type: number
+                  example: -7.815705
+                longitude:
+                  type: number
+                  example: 110.376437
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int32"
+                        example: 1
+                      name:
+                        type: "string"
+                        example: "Bank Sampah 1"
+                      address:
+                        type: "string"
+                        example: "Jl. Taman Siswa No. 1"
+                      open_time:
+                        type: "string"
+                        example: "08:00:00"
+                      close_time:
+                        type: "string"
+                        example: "16:00:00"
+                      contacts:
+                        type: "string"
+                        example: "081234567890"
+                      latitude:
+                        type: number
+                        example: -7.815705
+                      longitude:
+                        type: number
+                        example: 110.376437
+    get:
+      tags:
+        - "Location"
+      summary: "Get List Location"
+      operationId: "listLocation"
+      parameters:
+        - name: "size"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "100"
+        - name: "page"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "array"
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: "integer"
+                          format: "int32"
+                          example: 1
+                        name:
+                          type: "string"
+                          example: "Bank Sampah 1"
+                        address:
+                          type: "string"
+                          example: "Jl. Taman Siswa No. 1"
+                        open_time:
+                          type: "string"
+                          example: "08:00:00"
+                        close_time:
+                          type: "string"
+                          example: "16:00:00"
+                        contacts:
+                          type: "string"
+                          example: "081234567890"
+                        latitude:
+                          type: number
+                          example: -7.815705
+                        longitude:
+                          type: number
+                          example: 110.376437
+  /api/locations/{id_location}:
+    get:
+      tags:
+        - "Location"
+      summary: "Get One Location"
+      operationId: "getLocation"
+      parameters:
+        - name: "id_location"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int32"
+                        example: 1
+                      name:
+                        type: "string"
+                        example: "Bank Sampah 1"
+                      address:
+                        type: "string"
+                        example: "Jl. Taman Siswa No. 1"
+                      open_time:
+                        type: "string"
+                        example: "08:00:00"
+                      close_time:
+                        type: "string"
+                        example: "16:00:00"
+                      contacts:
+                        type: "string"
+                        example: "081234567890"
+                      latitude:
+                        type: number
+                        example: -7.815705
+                      longitude:
+                        type: number
+                        example: 110.376437
+    put:
+      tags:
+        - "Location"
+      summary: "Update Location"
+      operationId: "updateLocation"
+      parameters:
+        - name: "id_location"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: "string"
+                  example: "Bank Sampah 1"
+                address:
+                  type: "string"
+                  example: "Jl. Taman Siswa No. 1"
+                open_time:
+                  type: "string"
+                  example: "08:00:00"
+                close_time:
+                  type: "string"
+                  example: "16:00:00"
+                contacts:
+                  type: "string"
+                  example: "081234567890"
+                latitude:
+                  type: number
+                  example: -7.815705
+                longitude:
+                  type: number
+                  example: 110.376437
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int32"
+                        example: 1
+                      name:
+                        type: "string"
+                        example: "Bank Sampah 1"
+                      address:
+                        type: "string"
+                        example: "Jl. Taman Siswa No. 1"
+                      open_time:
+                        type: "string"
+                        example: "08:00:00"
+                      close_time:
+                        type: "string"
+                        example: "16:00:00"
+                      contacts:
+                        type: "string"
+                        example: "081234567890"
+                      latitude:
+                        type: number
+                        example: -7.815705
+                      longitude:
+                        type: number
+                        example: 110.376437
+    delete:
+      tags:
+        - "Location"
+      summary: "Delete Location"
+      operationId: "deleteLocation"
+      parameters:
+        - name: "id_location"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "integer"
+                    format: "int32"
+                    example: 1
+  /api/trash:
+    post:
+      tags:
+        - "Trash"
+      summary: "Create Trash"
+      operationId: "createTrash"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: string
+                  example: "Trash 1"
+                price:
+                  type: number
+                  example: 10000
+                description:
+                  type: string
+                  example: "Trash 1"
+                imageId:
+                  type: number
+                  example: 1
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "object"
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int32"
+                        example: 1
+                      name:
+                        type: string
+                        example: "Trash 1"
+                      price:
+                        type: number
+                        example: 10000
+                      description:
+                        type: string
+                        example: "Trash 1"
+                      imageId:
+                        type: number
+                        example: 1
+    get:
+      tags:
+        - "Trash"
+      summary: "Get List Trash"
+      operationId: "listTrash"
+      parameters:
+        - name: "size"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "100"
+        - name: "page"
+          in: "query"
+          required: false
+          schema:
+            type: "integer"
+            format: "int32"
+            default: "0"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        id:
+                          type: "integer"
+                          format: "int32"
+                          example: 1
+                        name:
+                          type: string
+                          example: "Trash 1"
+                        price:
+                          type: number
+                          example: 10000
+                        description:
+                          type: string
+                          example: "Trash 1"
+                        imageId:
+                          type: number
+                          example: 1
+  /api/trash/{id_trash}:
+    get:
+      tags:
+        - "Trash"
+      summary: "Get One Trash"
+      operationId: "getTrash"
+      parameters:
+        - name: "id_trash"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "object"
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int32"
+                        example: 1
+                      name:
+                        type: string
+                        example: "Trash 1"
+                      price:
+                        type: number
+                        example: 10000
+                      description:
+                        type: string
+                        example: "Trash 1"
+                      imageId:
+                        type: number
+                        example: 1
+    put:
+      tags:
+        - "Trash"
+      summary: "Update Trash"
+      operationId: "updateTrash"
+      parameters:
+        - name: "id_trash"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                name:
+                  type: string
+                  example: "Trash 1"
+                price:
+                  type: number
+                  example: 10000
+                description:
+                  type: string
+                  example: "Trash 1"
+                imageId:
+                  type: number
+                  example: 1
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "object"
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int32"
+                        example: 1
+                      name:
+                        type: string
+                        example: "Trash 1"
+                      price:
+                        type: number
+                        example: 10000
+                      description:
+                        type: string
+                        example: "Trash 1"
+                      imageId:
+                        type: number
+                        example: 1
+    delete:
+      tags:
+        - "Trash"
+      summary: "Delete Trash"
+      operationId: "deleteTrash"
+      parameters:
+        - name: "id_trash"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "integer"
+                    format: "int32"
+                    example: 1

@@ -16,25 +16,25 @@ data class Location(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int?,
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     var name: String,
 
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     var address: String,
 
-    @Column(name = "open_time")
+    @Column(name = "open_time", nullable = false)
     var open_time: Time,
 
-    @Column(name = "close_time")
+    @Column(name = "close_time", nullable = false)
     var close_time: Time,
 
-    @Column(name = "contacts")
+    @Column(name = "contacts", nullable = false)
     var contacts: String,
 
-    @Column(name = "latitute")
-    var latitude: Float,
+    @Column(name = "latitute", nullable = false)
+    var latitude: Double,
 
-    @Column(name = "longitute")
-    var longitude: Float
+    @Column(name = "longitute", nullable = false)
+    var longitude: Double
 
 )

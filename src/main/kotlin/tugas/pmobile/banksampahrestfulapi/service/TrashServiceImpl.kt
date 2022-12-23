@@ -9,6 +9,7 @@ import tugas.pmobile.banksampahrestfulapi.model.CreateTrashRequest
 import tugas.pmobile.banksampahrestfulapi.model.ListTrashRequest
 import tugas.pmobile.banksampahrestfulapi.model.TrashResponse
 import tugas.pmobile.banksampahrestfulapi.model.UpdateTrashRequest
+import tugas.pmobile.banksampahrestfulapi.repository.TrashImageRepository
 import tugas.pmobile.banksampahrestfulapi.repository.TrashRepository
 import tugas.pmobile.banksampahrestfulapi.validation.ValidationUtil
 import java.util.stream.Collectors
@@ -16,6 +17,7 @@ import java.util.stream.Collectors
 @Service
 class TrashServiceImpl(
     val trashRepository: TrashRepository,
+    val trashImageRepository: TrashImageRepository,
     val validationUtil: ValidationUtil
     ): TrashService {
     override fun create(createTrashRequest: CreateTrashRequest): TrashResponse {
@@ -25,7 +27,8 @@ class TrashServiceImpl(
             id = createTrashRequest.id,
             name = createTrashRequest.name!!,
             price = createTrashRequest.price!!,
-            description = createTrashRequest.description!!
+            description = createTrashRequest.description!!,
+            trashImage = trashImageRepository.findByIdOrNull(createTrashRequest.imageId)
         )
 
         trashRepository.save(trash)
@@ -44,7 +47,8 @@ class TrashServiceImpl(
             id = trash.id,
             name = trash.name,
             price = trash.price,
-            description = trash.description
+            description = trash.description,
+            imageId = trash.trashImage?.id
         )
     }
 
@@ -57,6 +61,7 @@ class TrashServiceImpl(
             name = updateTrashRequest.name!!
             price = updateTrashRequest.price!!
             description = updateTrashRequest.description!!
+            trashImage = trashImageRepository.findByIdOrNull(updateTrashRequest.imageId)
         }
 
         trashRepository.save(trash)
