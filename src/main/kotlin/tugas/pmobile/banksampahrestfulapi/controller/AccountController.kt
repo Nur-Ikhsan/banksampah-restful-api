@@ -77,13 +77,13 @@ class AccountController(val accountService: AccountService) {
         produces = ["application/json"],
         consumes = ["application/json"]
     )
-    fun login(@RequestBody body: LoginRequest): WebResponse<Boolean> {
-        accountService.login(body)
+    fun login(@RequestBody body: LoginRequest): WebResponse<AccountResponse> {
+        val accountResponse = accountService.login(body)
 
         return WebResponse(
             code = 200,
             status = "OK",
-            data = true
+            data = accountResponse
         )
     }
 

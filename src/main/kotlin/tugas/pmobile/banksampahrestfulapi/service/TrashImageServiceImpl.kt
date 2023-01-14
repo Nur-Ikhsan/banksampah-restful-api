@@ -55,7 +55,6 @@ class TrashImageServiceImpl(
     override fun download(id: Int): Pair<Resource, String> {
         val trashImage = trashImageRepository.findByIdOrNull(id) ?: throw NotFoundException()
         val uuidName = trashImage.name
-        println("uuidName : $uuidName")
         val type = trashImage.type
         val filePath = uploadDirectory.resolve(uuidName)
         val resource = UrlResource(filePath.toUri())

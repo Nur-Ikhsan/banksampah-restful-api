@@ -8,6 +8,283 @@ servers:
   - url: "http://127.0.0.1:8080"
     description: "Local server"
 paths:
+  /api/storing-trash:
+    post:
+      tags:
+        - "Storing Trash"
+      summary: "Create Storing Trash"
+      operationId: "createStoringTrash"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                accountId:
+                  type: "integer"
+                  example: 1
+                trashId:
+                  type: "integer"
+                  example: 1
+                locationId:
+                  type: "integer"
+                  example: 1
+                weight:
+                  type: "integer"
+                  example: 1
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "object"
+                    properties:
+                      id:
+                        type: "integer"
+                        example: 1
+                      accountId:
+                        type: "object"
+                        example: {}
+                      trashId:
+                        type: "object"
+                        example: {}
+                      locationId:
+                        type: "object"
+                        example: {}
+                      weight:
+                        type: "integer"
+                        example: 1
+                      total:
+                        type: "integer"
+                        example: 1
+                      createdAt:
+                        type: "string"
+                        example: "2023-01-14T14:36:10.000+00:00"
+                      status:
+                        type: "string"
+                        example: "DalamProses"
+  /api/storing-trash/account/{accountId}:
+    get:
+      tags:
+        - "Storing Trash"
+      summary: "Get List Storing Trash By Account Id"
+      operationId: "getStoringTrashByAccountId"
+      parameters:
+        - name: "accountId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "array"
+                    items:
+                        type: "object"
+                        properties:
+                            id:
+                              type: "integer"
+                              example: 1
+                            accountId:
+                              type: "object"
+                              example: {}
+                            trashId:
+                              type: "object"
+                              example: {}
+                            locationId:
+                              type: "object"
+                              example: {}
+                            weight:
+                              type: "integer"
+                              example: 1
+                            total:
+                              type: "integer"
+                              example: 1
+                            createdAt:
+                              type: string
+                              example: "2023-01-14T14:36:10.000+00:00"
+                            status:
+                              type: "string"
+                              example: "DalamProses"
+
+
+  /api/storing-trash/{id}:
+    get:
+      tags:
+          - "Storing Trash"
+      summary: "Get One Storing Trash By Id"
+      operationId: "getStoringTrashById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "object"
+                    properties:
+                      id:
+                        type: "integer"
+                        example: 1
+                      accountId:
+                        type: "object"
+                        example: {}
+                      trashId:
+                        type: "object"
+                        example: {}
+                      locationId:
+                        type: "object"
+                        example: {}
+                      weight:
+                        type: "integer"
+                        example: 1
+                      total:
+                        type: "integer"
+                        example: 1
+                      createdAt:
+                        type: string
+                        example: "2023-01-14T14:36:10.000+00:00"
+                      status:
+                          type: "string"
+                          example: "DalamProses"
+
+    put:
+      tags:
+          - "Storing Trash"
+      summary: "Update Storing Trash by"
+      operationId: "updateStoringTrash"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                weight:
+                  type: "integer"
+                  example: 2
+                status:
+                  type: "string"
+                  example: "Selesai"
+        required: true
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "object"
+                    properties:
+                      id:
+                        type: "integer"
+                        example: 1
+                      accountId:
+                        type: "object"
+                        example: { }
+                      trashId:
+                        type: "object"
+                        example: { }
+                      locationId:
+                        type: "object"
+                        example: { }
+                      weight:
+                        type: "integer"
+                        example: 2
+                      total:
+                        type: "integer"
+                        example: 2
+                      createdAt:
+                        type: string
+                        example: "2023-01-14T14:36:10.000+00:00"
+                      status:
+                        type: "string"
+                        example: "Selesai"
+
+    delete:
+      tags:
+          - "Storing Trash"
+      summary: "Delete Storing Trash by Id"
+      operationId: "deleteStoringTrash"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "integer"
+                    format: "int32"
+                    example: 200
+                  status:
+                    type: "string"
+                    example: "OK"
+                  data:
+                    type: "integer"
+                    format: "int32"
+                    example: 1
   /api/trash/image:
     post:
       tags:
@@ -174,8 +451,27 @@ paths:
                     type: "string"
                     example: "OK"
                   data:
-                    type: "boolean"
-                    example: true
+                    type: "object"
+                    properties:
+                      id:
+                        type: "integer"
+                        format: "int32"
+                        example: 1
+                      name:
+                        type: "string"
+                        example: "Nur Ikhsan"
+                      email:
+                        type: "string"
+                        example: "nurikhsan.0203@gmail.com"
+                      address:
+                        type: "string"
+                        example: "Jl. Taman Siswa No. 1"
+                      phoneNumber:
+                        type: "string"
+                        example: "081234567890"
+                      password:
+                        type: "string"
+                        example: "123456"
   /api/signup:
     post:
       tags:
