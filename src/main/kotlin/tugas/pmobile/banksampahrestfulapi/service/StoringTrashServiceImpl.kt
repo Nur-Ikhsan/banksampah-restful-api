@@ -31,7 +31,7 @@ class StoringTrashServiceImpl(
 
     override fun getStoringTrashByAccountId(id: Int): List<StoringTrashResponse> {
         val accountId = accountRepository.findByIdOrNull(id) ?: throw NotFoundException()
-        val storingTrash = storingTrashRepository.findByAccountId(accountId)
+        val storingTrash = storingTrashRepository.findByAccountIdOrderByCreatedAtDesc(accountId)
         return storingTrash.map { convertStoringTrashtoStoringTrashResponse(it) }
     }
 

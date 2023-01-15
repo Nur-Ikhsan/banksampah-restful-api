@@ -5,5 +5,5 @@ import tugas.pmobile.banksampahrestfulapi.entity.Account
 import tugas.pmobile.banksampahrestfulapi.entity.StoringTrash
 
 interface StoringTrashRepository : JpaRepository<StoringTrash, Int> {
-    fun findByAccountId(accountId: Account): List<StoringTrash>
+    fun findByAccountIdOrderByCreatedAtDesc(accountId: Account): List<StoringTrash>
 }
